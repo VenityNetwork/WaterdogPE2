@@ -55,8 +55,8 @@ public class BedrockServerInfo extends ServerInfo {
                 .group(eventLoop)
                 .option(RakChannelOption.RAK_PROTOCOL_VERSION, version.getRaknetVersion())
                 .option(RakChannelOption.RAK_ORDERING_CHANNELS, 1)
-                .option(RakChannelOption.RAK_CONNECT_TIMEOUT, networkSettings.getConnectTimeout() * 1000L)
-                .option(RakChannelOption.RAK_SESSION_TIMEOUT, 10000L)
+                .option(RakChannelOption.RAK_CONNECT_TIMEOUT, 30000L)
+                .option(RakChannelOption.RAK_SESSION_TIMEOUT, 30000L)
                 .option(RakChannelOption.RAK_MTU, networkSettings.getMaximumDownstreamMtu())
                 .handler(new ProxiedClientSessionInitializer(player, this, promise))
                 .connect(this.getAddress()).addListener((ChannelFuture future) -> {
