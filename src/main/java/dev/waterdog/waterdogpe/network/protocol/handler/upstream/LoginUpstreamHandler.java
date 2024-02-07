@@ -153,13 +153,8 @@ public class LoginUpstreamHandler implements BedrockPacketHandler {
                 return PacketSignal.HANDLED;
             }
 
-            if (protocol.isBefore(ProtocolVersion.MINECRAFT_PE_1_18_10)) {
-                this.session.disconnect("Please update your Minecraft version to " + ProtocolVersion.latest().getMinecraftVersion());
-                return PacketSignal.HANDLED;
-            }
-
             if (protocol.isBefore(ProtocolVersion.MINECRAFT_PE_1_20_0)) {
-                this.onLoginFailed(handshakeEntry, null, "disconnectionScreen.notAuthenticated");
+                this.session.disconnect("Please update your Minecraft version to " + ProtocolVersion.latest().getMinecraftVersion());
                 return PacketSignal.HANDLED;
             }
 
