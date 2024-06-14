@@ -39,6 +39,22 @@ import static java.util.Objects.requireNonNull;
 public abstract class BedrockPacketCodec extends MessageToMessageCodec<BedrockBatchWrapper, BedrockBatchWrapper> {
     public static final String NAME = "bedrock-packet-codec";
 
+    private static final EncodingSettings clientEncodingSettings = EncodingSettings.builder()
+            .maxListSize(4096)
+            .maxByteArraySize(1024 * 1024 * 2) // 2MB
+            .maxNetworkNBTSize(1024 * 1024 * 3) // 3MB
+            .maxItemNBTSize(1024 * 700) // 700KB
+            .maxStringLength(1024 * 600) // 600KB
+            .build();
+
+    private static final EncodingSettings serverEncodingSettings = EncodingSettings.builder()
+            .maxListSize(1024)
+            .maxByteArraySize(1024 * 1024) // 1MB
+            .maxNetworkNBTSize(1024 * 512) // 500KB
+            .maxItemNBTSize(1024 * 200) // 100KB
+            .maxStringLength(1024 * 600) // 600KB
+            .build();
+
     private BedrockCodec codec = BedrockCompat.CODEC;
     private BedrockCodecHelper helper = codec.createHelper();
 
@@ -153,8 +169,8 @@ public abstract class BedrockPacketCodec extends MessageToMessageCodec<BedrockBa
         this.helper = requireNonNull(helper, "Helper can not be null");
 
         switch (this.inboundRecipient) {
-            case CLIENT -> this.helper.setEncodingSettings(EncodingSettings.CLIENT);
-            case SERVER -> this.helper.setEncodingSettings(EncodingSettings.SERVER);
+            case CLIENT -> this.helper.setEncodingSettings(clientEncodingSettings);
+            case SERVER -> this.helper.setEncodingSettings(serverEncodingSettings);
         }
         return this;
     }
