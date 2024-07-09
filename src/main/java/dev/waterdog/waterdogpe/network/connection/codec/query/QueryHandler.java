@@ -148,7 +148,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket> {
                 "",
                 this.proxy.getPlayerManager().getPlayers().values(),
                 config.getMaxPlayerCount(),
-                "WaterdogPE",
+                "Venity Proxy", // TODO: VN CHANGE THIS
                 address
         );
         this.proxy.getEventManager().callEvent(event);
@@ -173,7 +173,8 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket> {
         map.put("hostport", Integer.toString(bindAddress.getPort()));
         map.put("hostip", bindAddress.getHostName());
         map.put("game_id", GAME_ID);
-        map.put("version", event.getVersion());
+        //map.put("version", event.getVersion());
+        map.put("version", "1.21.2"); // TODO: VN CHANGE THIS
         map.put("plugins", ""); // Do not list plugins
         map.put("whitelist", event.hasWhitelist() ? "on" : "off");
 

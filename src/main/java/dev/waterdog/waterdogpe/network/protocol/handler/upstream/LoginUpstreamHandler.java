@@ -96,7 +96,7 @@ public class LoginUpstreamHandler implements BedrockPacketHandler {
     @Override
     public PacketSignal handle(RequestNetworkSettingsPacket packet) {
         ProtocolVersion protocol;
-        if (!this.attemptLogin() || (protocol = this.checkVersion(packet.getProtocolVersion())) == null) {
+        if (!this.attemptLogin() || (protocol = this.checkVersion(convertProtocol(packet.getProtocolVersion()))) == null) {
             return PacketSignal.HANDLED;
         }
 
@@ -121,10 +121,19 @@ public class LoginUpstreamHandler implements BedrockPacketHandler {
         return PacketSignal.HANDLED;
     }
 
+    private int convertProtocol(int protocolVer){
+        if(protocolVer == 686){
+            // no protocol changes for 686, so use 685 instead
+            protocolVer = 685;
+        }
+        return protocolVer;
+    }
+
     @Override
     public PacketSignal handle(LoginPacket packet) {
         ProtocolVersion protocol;
-        if (!this.attemptLogin() || (protocol = this.checkVersion(packet.getProtocolVersion())) == null) {
+
+        if (!this.attemptLogin() || (protocol = this.checkVersion(convertProtocol(packet.getProtocolVersion()))) == null) {
             return PacketSignal.HANDLED;
         }
 
