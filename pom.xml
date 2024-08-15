@@ -196,17 +196,7 @@
         <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.37.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.cloudburstmc.protocol</groupId>
-            <artifactId>common</artifactId>
-            <version>3.0.0.Beta2-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.cloudburstmc</groupId>
-            <artifactId>nbt</artifactId>
-            <version>3.0.3.Final</version>
+            <version>9.10.1</version>
         </dependency>
     </dependencies>
 
