@@ -35,7 +35,6 @@ public class BlockPalette {
     private static final Int2ObjectMap<BlockPalette> paletteCache = new Int2ObjectOpenHashMap<>();
     private final Object2ShortMap<BlockPair> entryToId = new Object2ShortLinkedOpenHashMap<>();
     private final Short2ObjectMap<BlockPair> idToEntry = new Short2ObjectLinkedOpenHashMap<>();
-
     public BlockPalette(NbtList<NbtMap> paletteData, ProtocolVersion protocol) {
         short id = 0;
         for (NbtMap item : paletteData) {
