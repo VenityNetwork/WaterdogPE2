@@ -2,8 +2,10 @@ name: Release Build
 on:
   workflow_dispatch:
   push:
-    tags:
-      - 'v*'
+    tags-ignore:
+      - '**'
+    branches:
+      - '**'
 jobs:
   build:
     runs-on: ubuntu-latest
