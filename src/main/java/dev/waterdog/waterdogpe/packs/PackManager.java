@@ -154,6 +154,8 @@ public class PackManager {
         this.packsInfoPacket.setWorldTemplateVersion("0.0.0");
 
         this.packsInfoPacket.setForcedToAccept(this.proxy.getConfiguration().isForceServerPacks());
+        this.packsInfoPacket.setWorldTemplateId(UUID.randomUUID());
+        this.packsInfoPacket.setWorldTemplateVersion("");
         this.stackPacket.setForcedToAccept(this.proxy.getConfiguration().isOverwriteClientPacks());
 
         this.packsInfoPacket.getBehaviorPackInfos().clear();
